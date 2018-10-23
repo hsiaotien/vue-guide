@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <!--双向绑定，v-model属于双向绑定，v和m互相影响-->
+    <input type="text" v-model="num">
+    <!--单向绑定，{{name}}属于单向绑定，模型中的数据绑定到视图中，v监听m的数据变化。可控制台改变vm.name进行测试-->
+    <h2>{{name}},非常帅,有{{num}}位女神</h2>
+</div>
+<script src="./node_modules/vue/dist/vue.js">
+</script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            name:'虎哥',
+            num:1,
+        }
+    })
+</script>
+</body>
+</html>

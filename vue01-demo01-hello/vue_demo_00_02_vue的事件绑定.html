@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <!--vue的事件绑定方式一，直接操作变量-->
+    <button v-on:click="num++">hide she</button>
+    <!--ide可能不识别这种语法，会爆红。实际有不报红的简写，用@click即可-->
+    <!--或者vue事件绑定方式二，通过方法操作-->
+    <button v-on:click="add">hide he</button>
+    <h2>{{name}},非常帅,有{{num}}位女神，有{{num02}}位男神为他着迷</h2>
+</div>
+<script src="./node_modules/vue/dist/vue.js">
+</script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            name:'虎哥',
+            num:1,
+            num02:1,
+        },
+        methods:{
+            add(){
+                this.num02++
+            }
+        }
+    })
+</script>
+</body>
+</html>
