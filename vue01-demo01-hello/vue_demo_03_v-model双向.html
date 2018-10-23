@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--
+    v-model是双向绑定，视图（View）和模型（Model）之间会互相影响。
+
+    既然是双向绑定，一定是在视图中可以修改数据，这样就限定了视图的元素类型
+
+    一般是表单输入项和自定义组件
+    目前v-model的可使用元素有：
+    - input
+    - select
+    - textarea
+    - checkbox
+    - radio
+    - components（Vue中的自定义组件)
+
+    -->
+</head>
+<body>
+<div id="app">
+<input type="checkbox" v-model="language" value="java">java</input>
+<input type="checkbox" v-model="language" value="php">php</input>
+<input type="checkbox" v-model="language" value="python">python</input>
+    <div>选择了,{{language.join(",")}}</div>
+</div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+        let vm = new Vue({
+            el:"#app",
+            data:{
+                language:[],
+            }
+        })
+    </script>
+</body>
+</html>
