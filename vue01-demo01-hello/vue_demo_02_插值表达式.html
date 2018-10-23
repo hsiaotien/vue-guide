@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--
+    1.插值表达式, a,支持js,可以调js内置函数. b.必须要返回值 . c.可以直接获取vue实例定义的数据或函数.d. 不安全,会出现插值闪烁现象
+    2. 解决插值闪烁,使用v-text和v-html指令来替代{{}}.不会出现插值闪烁，当没有数据时，会显示空白。
+    3.v-text和v-html的区别,都是输出到元素内部,但一个会对代码渲染,一个作为普通文本直接输出
+
+    -->
+</head>
+<body>
+    <div id="app"  >
+        <div>{{name}}</div>
+        <div v-text="username">v-text:</div>
+        <div v-text="blog">v-text:</div>
+        <br/>
+        <div v-html="username">v-html:</div>
+        <div v-html="blog">v-html:</div>
+
+
+    </div>
+    <script src="./node_modules/vue/dist/vue.js" ></script>
+<script type="text/javascript">
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            name: "虎哥",
+            username:"不带html代码",
+            blog:"<u>带html代码</u>",
+        }
+    })
+
+</script>
+</body>
+</html>
