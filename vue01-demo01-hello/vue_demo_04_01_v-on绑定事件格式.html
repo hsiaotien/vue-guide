@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <button v-on:click="num++">点击增加(事件中直接写js片段)</button>
+        <button v-on:click="decrement">点击减少(事件指定回调函数,必须vue实例中定义的)</button>
+        <button @click="num--">点击减(事件绑定的简写)</button>
+        数字: <span v-text="num"></span>
+
+    </div>
+
+<script src="./node_modules/vue/dist/vue.js" ></script>
+<script type="text/javascript" >
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            num:1,
+        },
+        methods:{
+            decrement:function () {
+                this.num--;
+            }
+        },
+    })
+</script>
+</body>
+</html>

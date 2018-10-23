@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 方法应该只有数据逻辑,而不是处理dom的细节. 为解决此问题, vue为v-on提供事件修饰符.
+        - .stop ：阻止事件冒泡
+        - .prevent：阻止默认事件发生
+        - .capture：使用事件捕获模式
+        - .self：只有元素自身触发事件才执行。（冒泡或捕获的都不执行）
+        - .once：只执行一次
+        -->
+        <!--防止默认事件发生-->
+        <a href="http://www.baidu.com" @click.prevent="num++">点我加,如何阻止默认事件</a>
+        <span v-text="num"></span>
+        <!--阻止事件冒泡-->
+        <div style="width: 100px;height: 100px;border: crimson solid 1px;" @click="print('div')">
+            <button @click="print('capture')">hide me capture</button>
+            <button @click.stop="print('btn')">hide me</button>
+        </div>
+        <button @click.once="print('once')">hide me only one</button>
+
+        <!--盲区: 事件修饰符-->
+    </div>
+
+<script src="./node_modules/vue/dist/vue.js" ></script>
+<script type="text/javascript" >
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            num:1,
+        },
+        methods:{
+            print(text){
+                console.log(text);
+            }
+        }
+    })
+</script>
+</body>
+</html>

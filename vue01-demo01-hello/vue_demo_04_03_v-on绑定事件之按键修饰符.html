@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+
+        <input @keyup.67="print('c键')">c键--看控制台</input><br/>
+        <input @keyup.enter="print('enter键')">enter键-看控制台</input><br/>
+        <input @keyup.shift.65="print('shift+a组合键')">组合键-看控制台</input><br/>
+        <!-- Ctrl + Click -->
+        <div style="width: 100px;height: 100px;border: crimson solid 1px" @click.ctrl="summit">ctrl+click组合键触发提交to summit</div>
+    </div>
+
+<script src="./node_modules/vue/dist/vue.js" ></script>
+<script type="text/javascript" >
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            num:1,
+        },
+        methods:{
+            print(text){
+                console.log(text);
+            },
+            summit(){
+                alert("提交");
+            },
+        }
+    })
+</script>
+</body>
+</html>
