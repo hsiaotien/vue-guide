@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+
+    <introduce :lessons='lessons'></introduce>
+
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    Vue.component("introduce",{
+        // 直接使用props接收到的属性来渲染页面
+        template:`
+    <ul>
+        <li v-for="lesson in lessons">{{lesson.name}}</li>
+    </ul>
+        `,
+        props: ['lessons'] // 通过props来接收一个父组件传递的属性
+    });
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            lessons:[
+                {name:'java'},
+                {name:'python'},
+            ]
+        }
+    })
+</script>
+</body>
+</html>
