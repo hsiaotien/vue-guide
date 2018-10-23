@@ -17,7 +17,7 @@
     // 定义全局组件，两个参数：1，组件名称。2，组件参数
     Vue.component("counter",{
         template:"<button @click='count++'>点击{{count}}次了</button>",
-        data() {
+        data() { // 脚下留心：一个组件的 data 选项必须是一个函数，因此每个实例可以维护一份被返回对象的独立的拷贝
             return {
                 count:0,
             }
@@ -37,6 +37,12 @@
      - 但是组件渲染需要html模板，所以增加了template属性，值就是HTML模板
      - 全局组件定义完毕，任何vue实例都可以直接在HTML中通过组件名称来使用组件了。
      - data的定义方式比较特殊，必须是一个函数。
+     原始为：（后续结合es6语法，函数的简写方式进行缩写data(){ return {count:1}}
+     data：function(){
+        return {
+            count:0
+        }
+     }
      */
 </script>
 </body>
