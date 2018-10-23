@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <!--插值表达式中支持js代码，但不是想要的效果，后续使用computed计算属性-->
+        today is {{new Date(birthday)}}
+        <hr/>
+        <!--计算属性是一种特殊的属性，看似是函数，实际是属性。 这就是计算属性-->
+        计算属性,num: <span v-text="num"></span>
+        <hr/>
+        today is
+        <span v-text="birth"></span>
+        <!--注意计算属性不是死的属性，而是一个动态的属性，它会监控this.birthday变量的变化，
+        而且是个双向的监控，会相互影响，model和view都互相监控，model中值变，视图view变；
+        视图view变，model的值也会跟着变-->
+        <hr/>
+        today is
+        <span v-text="getDate()"></span>
+        <span v-text="getDate()"></span>
+        <span v-text="birth"></span>
+        <span v-text="birth"></span>
+        <!--两者方式都可以做到效果，但计算属性是做了缓存优化的，它是一个属性；
+        而方法是每次调用都要执行一次。可以看控制台的日志-->
+    </div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+<script type="text/javascript">
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            birthday: 12122323212,
+        },
+        computed:{
+         birth(){
+             console.log(1)
+             const b = new Date(this.birthday);
+             return b.getFullYear()+"年"+b.getMonth()+"月"+b.getDay()+"日";
+         },
+         num(){
+             return 123
+         }
+        },
+        methods:{
+            getDate(){
+                console.log(2)
+                const b = new Date(this.birthday);
+                return b.getFullYear()+"年"+b.getMonth()+"月"+b.getDay()+"日";
+            }
+        }
+    })
+</script>
+</body>
+</html>
