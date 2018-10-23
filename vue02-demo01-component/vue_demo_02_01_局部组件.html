@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <counter></counter>
+    <counter></counter>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    const counter = {
+        template:"<button @click='count++'>点击{{count}}次了</button>",
+        data() { // 脚下留心：一个组件的 data 选项必须是一个函数，因此每个实例可以维护一份被返回对象的独立的拷贝
+            return {
+                count:0,
+            }
+        }
+    };
+    var vm = new Vue({
+        el: "#app",
+        data: {},
+        components: {
+            counter: counter
+        }
+        //    注意子组件名称和 组件对象的名称一致时，即key和value一致时
+        //    可以简写，相当于将子组件注入当前vue实例中
+        /*
+        components: {
+            counter
+        }
+        */
+    })
+
+    /**
+     * 一旦全局注册，就意味着即便以后你不再使用这个组件，它依然会随着Vue的加载而加载。
+     * 因此，对于一些并不频繁使用的组件，我们会采用局部注册。
+     * 我们先在外部定义一个对象，结构与创建全局组件时传递的第二个参数一致：
+     * 组件的使用：
+     - components就是当前vue对象子组件集合。
+     - 其key就是子组件名称
+     - 其值就是组件对象的属性
+     - 效果与刚才的全局注册是类似的，不同的是，这个counter组件只能在当前的Vue实例中使用
+     */
+</script>
+
+</body>
+</html>
