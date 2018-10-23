@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!--
+v-if，顾名思义，条件判断。当得到结果为true时，所在的元素才会被渲染。
+-->
+<body>
+
+<div id="app">
+    <button @click="show=!show">click me</button>
+    <div v-if="show" style="width: 100px;height: 100px;border: red solid 1px">
+        toggle me
+    </div>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js" ></script>
+<script type="text/javascript" >
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            show:true,
+        },
+
+    })
+</script>
+</body>
+</html>
