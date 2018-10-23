@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!-- 思路： 子组件的点击事件不能直接修改父组件中的变量，
+
+而父组件的方法可以改变num, 那么思路就是子组件的事件来驱动父组件的方法即可-->
+<body>
+<div id="app">
+    num的值： {{num}}
+    <hr/>
+    <sub-component :num="num" @add="incr" @reduce="decr"></sub-component>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    const subComponent = {
+        template: `
+        <div>
+            <button @click="increment">+</button>
+            <button @click="decrement">-</button>
+        </div>
+        `,
+        //可以对props设置默认值！类似前面的优化示例
+        props: ["num"],
+        methods: {
+            increment(){
+                //通知父组件，num++
+                this.$emit("add")
+            },
+            decrement(){
+                //通知父组件，num--
+                this.$emit("reduce")
+            }
+        }
+    };
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            num: 1
+        },
+        components: {
+            subComponent
+        },
+        methods: {
+            incr(){
+                this.num++;
+            },
+            decr(){
+                this.num--;
+            }
+        }
+    })
+</script>
+</body>
+</html>

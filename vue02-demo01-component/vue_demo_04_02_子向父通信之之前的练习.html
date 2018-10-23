@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <son-component @inc1="add" @dec1="sub"></son-component>
+    {{num}}
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    const sonComponent = {
+
+        template: `
+          <div>
+          <button @click="inc">+</button>
+          <button @click="dec">-</button>
+          </div>
+        `,
+        methods:{
+            inc(){
+                this.$emit('inc1')
+            },
+            dec(){
+                this.$emit('dec1')
+            }
+        }
+
+    };
+    let vm = new Vue({
+        el: "#app",
+        data:{
+            num:0,
+        },
+        methods:{
+            add(){
+                this.num++;
+            },
+            sub(){
+                this.num--;
+            }
+        },
+        components:{
+            sonComponent
+        }
+    })
+</script>
+</body>
+</html>
