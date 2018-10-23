@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--监控简单变量-->
+    <button @click="num++">点我，看控制台</button>
+    <!--监控对象的属性-->
+    <button @click="person.age++">点我，看控制台</button>
+    <!--监控对象的属性，另外一种方式，深度监控-->
+    <button @click="person.age++">深度监控，看控制台</button>
+    <!--脚下留心：监控watch的监控时间点，是在初始化的时候监控，在初始化后添加的属性并不会被监控！！-->
+    <button @click="person.length++">注意监控的时间点（范围，哪些会被监控，哪些不会）</button>
+    <!--此外此事件并不会生效，vue实例数据data中并没有这个属性！需要在vue工具上点击变化，再看控制台-->
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: "#app",
+        data:{
+            num: 1,
+            person: {
+                name: "jack",
+                age: 21
+            }
+        },
+        watch: {
+            num(val,old) {
+                console.log(val,old);
+            },
+            'person.age'(val,old) {
+                console.log(val,old);
+            },
+            //深度监控,设置deep,并在handler中处理即可
+            person: {
+                handler(val,old){
+                    console.log("这是深度监控==>",val,old);
+                },
+                deep: true
+            }
+        },
+        created() {
+            this.person.length = 100; //这个属性并不会被监控
+        }
+    })
+</script>
+</body>
+</html>
