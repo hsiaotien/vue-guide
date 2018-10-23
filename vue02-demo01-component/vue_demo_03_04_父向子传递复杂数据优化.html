@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--数据传递过去了-->
+    <sub-component :items="lessons"></sub-component>
+    <hr/>
+    <!--数据没有传递，也会有默认值，防止子组件渲染页面出现空白页面-->
+    <sub-component></sub-component>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    const subComponent = {
+        // 直接使用props接收到的属性来渲染页面
+        template:'\
+                <ul>\
+                    <li v-for="item in items" :key="item.id">{{item.id}} : {{item.name}}</li>\
+                </ul>\
+                ',
+        props: {
+            items: {
+                type: Array,
+                default: [{id: 0,name: "default lesson"}]
+            }
+        } // 通过props来接收一个父组件传递的属性
+    };
+    var vm = new Vue({
+        el: "#app",
+        data:{
+            lessons:[
+                {id:1, name: 'java'},
+                {id:2, name: 'php'},
+                {id:3, name: 'ios'},
+            ]
+        },
+        components: {
+            subComponent
+        }
+    })
+
+</script>
+</body>
+</html>

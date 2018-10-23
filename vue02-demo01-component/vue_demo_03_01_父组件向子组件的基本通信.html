@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--如何判断子组件还是父组件，并不是根据全局组件还是局部组件来判断的！-->
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--变量要使用vue实例（父组件）中的变量属性值，就要用v-bind.(简写冒号）。
+    ：title = "title" 这句变量赋值，左边title是子组件中要接收的变量名可以随意，
+    右边的title是vue实例（父组件）中的变量
+    -->
+    <sub-component :title="title"></sub-component>
+    <hr/>
+    <!--如果右边是普通的属性值，就不需要v-bind,看示例-->
+    <sub-component title="tiger真的很帅！"></sub-component>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    const subComponent = {
+        // 直接使用props接收到的属性来渲染页面
+        template: "<h1>{{title}}</h1>",
+        props: ['title'] // 通过props来接收一个父组件传递的属性
+    };
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            title: "tiger很帅！"
+        },
+        components: {
+            subComponent
+        }
+    })
+
+</script>
+</body>
+</html>
