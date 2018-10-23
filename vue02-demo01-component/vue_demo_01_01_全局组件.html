@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--使用定义好的全局组件-->
+    <counter></counter>
+    <counter></counter>
+    <counter></counter>
+    <!--使用的每一个组件操作的数据对象不是同一个，即互相不影响-->
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    // 定义全局组件，两个参数：1，组件名称。2，组件参数
+    Vue.component("counter",{
+        template:"<button @click='count++'>点击{{count}}次了</button>",
+        data() {
+            return {
+                count:0,
+            }
+        }
+    })
+
+    var vm = new Vue({
+        el: "#app",
+        data: {
+
+        }
+    })
+    /**
+     * 通过Vue的component方法来定义一个全局组件。
+     - 组件其实也是一个Vue实例，因此它在定义时也会接收：data、methods、生命周期函数等
+     - 不同的是组件不会与页面的元素绑定，否则就无法复用了，因此没有el属性。
+     - 但是组件渲染需要html模板，所以增加了template属性，值就是HTML模板
+     - 全局组件定义完毕，任何vue实例都可以直接在HTML中通过组件名称来使用组件了。
+     - data的定义方式比较特殊，必须是一个函数。
+     */
+</script>
+</body>
+</html>
