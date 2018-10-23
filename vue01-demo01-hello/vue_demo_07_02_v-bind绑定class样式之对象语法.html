@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        a:active {
+            background-color: red;
+        }
+    </style>
+<!--
+v-bind:class可以简写为:class
+-->
+</head>
+<body>
+    <div id="app">
+        <a href="#" v-bind:class="{active:'isActive',textba:'hasError'}">谷歌一下</a>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script type="text/javascript" >
+        let vm = new Vue({
+            el:"#app",
+            data:{
+                isActive:true,
+                hasError:true,
+            }
+        })
+    </script>
+</body>
+</html>

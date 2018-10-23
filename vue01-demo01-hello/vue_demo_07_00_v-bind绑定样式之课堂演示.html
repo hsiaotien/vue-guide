@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .red {
+            background: red;
+        }
+        .green {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <button @click="red = !red">红色</button>
+    <button @click="green = !green">绿色</button>
+
+    <!--class接受数组这种语法-->
+    <div style="height: 100px;width: 100px;" v-bind:class="['red','green']">
+        我是字
+    </div>
+    <hr/>
+    <!--为了动态改变演示，可以使用vue实例的布尔变量来控制，即用对象的方式-->
+    <!--class接受对象这种语法,加上v-bind的css样式，直接使用vue实例中的变量-->
+    <div style="height: 100px;width: 100px;" v-bind:class="{'red':red,'green':green}">
+        我是字
+    </div>
+    <hr/>
+    <!--实际上v-bind有简写方式-->
+    <div style="height: 100px;width: 100px;" :class="{'red':red,'green':green}">
+        我是字
+    </div>
+
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            red:true,
+            green:false
+        }
+    })
+</script>
+</body>
+</html>
