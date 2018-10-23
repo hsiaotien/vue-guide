@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--
+    遍历数组,遍历角标,遍历对象. 从底层数据的结构来看. 数组和对象都是key-value组成的数据结构
+    数组可以看成index-value
+    对象可以看成key-value.或者key-value-index  (一个对象里有多个属性,这里进行延伸,加入index概念)
+    -->
+</head>
+<body>
+<div id="app">
+    <div v-for="user in users">
+        <div v-for="value in user">
+            {{value}}
+        </div>
+    </div>
+    <hr/>
+    <div v-for="user in users">
+        <div v-for="(value,key) in user">
+            {{value}}:{{key}}
+        </div>
+    </div>
+    <hr/>
+    <div v-for="user in users">
+        <div v-for="(value,key,index) in user">
+            {{value}}:{{key}}:{{index}}
+        </div>
+    </div>
+    <hr/>
+    <div v-for="value in student">
+        <li>
+            {{value}}
+        </li>
+    </div>
+    <hr/>
+
+</div>
+
+<script src="./node_modules/vue/dist/vue.js" ></script>
+<script type="text/javascript" >
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            users:[
+                {name:'柳岩', gender:'女', age: 21},
+                {name:'虎哥', gender:'男', age: 30},
+                {name:'范冰冰', gender:'女', age: 24},
+                {name:'刘亦菲', gender:'女', age: 18},
+                {name:'古力娜扎', gender:'女', age: 25}
+            ],
+            student:{name:'tom',age:18},
+        },
+
+    })
+</script>
+</body>
+</html>

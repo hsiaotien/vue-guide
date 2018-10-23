@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--
+    当 Vue.js 用 v-for 正在更新已渲染过的元素列表时，它默认用“就地复用”策略。如果数据项的顺序被改变，
+    Vue 将不会移动 DOM 元素来匹配数据项的顺序， 而是简单复用此处每个元素，并且确保它在特定索引下显示已被渲染过的每个元素。
+
+    这个功能可以有效的提高渲染的效率。
+
+    但是要实现这个功能，你需要给Vue一些提示，以便它能跟踪每个节点的身份，从而重用和重新排序现有元素，
+    你需要为每项提供一个唯一 key 属性。理想的 key 值是每项都有的且唯一的 id。
+    -->
+</head>
+<body>
+<div id="app">
+    <div v-for="(user,index) in users" :key="index">
+        <div v-for="(value,key,index2) in user" :key="index2">
+            {{index}}-{{index2}}:{{key}}:{{value}}
+        </div>
+    </div>
+
+
+</div>
+
+<script src="./node_modules/vue/dist/vue.js" ></script>
+<script type="text/javascript" >
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            users:[
+                {name:'柳岩', gender:'女', age: 21},
+                {name:'虎哥', gender:'男', age: 30},
+                {name:'范冰冰', gender:'女', age: 24},
+                {name:'刘亦菲', gender:'女', age: 18},
+                {name:'古力娜扎', gender:'女', age: 25}
+            ]
+        },
+
+    })
+</script>
+</body>
+</html>
