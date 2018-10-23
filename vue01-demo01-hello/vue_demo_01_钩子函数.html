@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--
+    重点:理解双向绑定和单向绑定.
+    以及钩子函数.代表着各个时期的构造函数
+    -->
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="name"/>
+        <h2>{{name}}帅气</h2>
+        <h1>{{num}}位美女</h1>
+        <button v-on:click="add">click me</button>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js">
+
+    </script>
+    <script type="text/javascript">
+        let instance = new Vue({
+            el:"#app",
+            data:{
+                name:"刘德华",
+                num:1,
+            },
+            methods:{
+                add:function () {
+                    this.num++;
+                }
+            },
+            beforeCreate(){
+                console.log("vue实例之前")
+            },
+            created(){
+                console.log("vue实例完毕");
+                console.log(this);//看看this是谁
+            },
+            beforeMount(){
+                console.log("挂载之前")
+            },
+            mounted(){
+                console.log("挂载完毕")
+                console.log(this);//看看this是谁
+            },
+            beforeUpdate(){
+                console.log("data值变动了,重写渲染之前")
+            },
+            updated(){
+                console.log("重写渲染完毕")
+                console.log(this);//看看this是谁
+            },
+            beforeDestroy(){
+                console.log("销毁了,拆解watcher,子构件,事件监听器之前")
+            },
+            destroyed(){
+                console.log("拆解完毕")
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>
